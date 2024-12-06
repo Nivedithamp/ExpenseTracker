@@ -1,0 +1,148 @@
+body {
+    margin: 0;
+    font-family: 'Arial', sans-serif;
+    background-color: #222831;
+    color: #EEEEEE;
+}
+
+.app-container {
+    display: flex;
+    height: 100vh;
+}
+  
+aside {
+    width: 250px;
+    background-color: #393E46;
+    color: #EEEEEE;
+    display: flex;
+    flex-direction: column;
+    padding: 1.5rem;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+}
+  
+.logo {
+    font-size: 2rem;
+    font-weight: bold;
+    margin-bottom: 2.5rem;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+  
+.logo-expense {
+    color: #EEEEEE;
+    font-family: 'Arial', sans-serif;
+}
+  
+.logo-trackr {
+    color: #00ADB5;
+    font-family: 'Courier New', monospace;
+}
+  
+aside nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+  
+aside nav ul li {
+    margin-bottom: 1.5rem;
+}
+  
+aside nav ul li a {
+    color: #EEEEEE;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 1.2rem;
+    padding: 0.75rem 1.5rem;
+    display: block;
+    border-radius: 4px;
+    font-family: 'Verdana', sans-serif;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+  
+aside nav ul li a:hover {
+    background-color: #00ADB5;
+    transform: translateX(8px);
+}
+  
+main {
+    flex: 1;
+    padding: 2rem;
+    overflow-y: auto;
+    background-color: #EEEEEE;
+    color: #222831;
+}
+  
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1.5rem;
+    background-color: #393E46;
+    color: #EEEEEE;
+    border-radius: 5px;
+    overflow: hidden;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+  
+table th,
+table td {
+    padding: 0.75rem 1rem;
+    text-align: left;
+    border-bottom: 1px solid #222831;
+}
+  
+table th {
+    background-color: #00ADB5;
+    color: #222831;
+    font-weight: bold;
+}
+  
+table tr:hover {
+    background-color: #EEEEEE;
+    color: #222831;
+}
+  
+button {
+    border: none;
+    padding: 0.5rem 1rem;
+    font-size: 0.9rem;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, box-shadow 0.2s ease;
+}
+  
+button.edit {
+    background-color: #00ADB5;
+    color: #222831;
+}
+  
+button.edit:hover {
+    background-color: #0099A4;
+}
+  
+button.delete {
+    background-color: #E74C3C;
+    color: #EEEEEE;
+}
+  
+button.delete:hover {
+    background-color: #C0392B;
+}
+  
+main::-webkit-scrollbar {
+    width: 8px;
+}
+  
+main::-webkit-scrollbar-track {
+    background: #393E46;
+}
+  
+main::-webkit-scrollbar-thumb {
+    background: #00ADB5;
+    border-radius: 5px;
+}
+  
+main::-webkit-scrollbar-thumb:hover {
+    background: #0099A4;
+}
