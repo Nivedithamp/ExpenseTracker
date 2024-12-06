@@ -12,6 +12,7 @@
     text-align: center;
     color: #00ADB5;
     margin-bottom: 1.5rem;
+    font-size: 2.0rem;;
 }
 
 .expense-form {
@@ -52,7 +53,7 @@ button.cancel-btn:hover {
 button.edit-btn {
     background-color: #00ADB5;
     color: #222831;
-    margin-right: 5px;
+    margin-right: 10px;
 }
 
 button.edit-btn:hover {

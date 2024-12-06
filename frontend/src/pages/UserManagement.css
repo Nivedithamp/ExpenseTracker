@@ -12,6 +12,7 @@
     text-align: center;
     color: #00ADB5;
     margin-bottom: 1.5rem;
+    font-size: 2.0rem;;
 }
 
 .user-form {
@@ -94,7 +95,7 @@ button.edit {
     border-radius: 4px;
     cursor: pointer;
     transition: background-color 0.3s ease;
-    margin-right: 5px;
+    margin-right: 10px;
 }
 
 button.edit:hover {
