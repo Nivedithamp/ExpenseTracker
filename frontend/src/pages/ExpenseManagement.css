@@ -103,3 +103,32 @@
     color: #222831; /* Dark Text */
   }
   
+  .pagination-controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    margin-top: 1rem;
+  }
+  
+  .pagination-controls button {
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    background-color: #00ADB5; /* Bright Accent */
+    color: #393E46; /* Dark Text */
+    transition: background-color 0.3s ease;
+  }
+  
+  .pagination-controls button:disabled {
+    background-color: #393E46; /* Gray for disabled */
+    cursor: not-allowed;
+  }
+  
+  .pagination-controls span {
+    font-size: 1rem;
+    color: #EEEEEE;
+  }
+  

@@ -14,6 +14,9 @@ function ExpenseManagement() {
   const [description, setDescription] = useState('');
   const [cost, setCost] = useState('');
 
+  const [currentPage, setCurrentPage] = useState(1); // Pagination state
+  const rowsPerPage = 10; // Number of rows per page
+
   const fetchExpenses = async () => {
     const res = await axios.get('http://localhost:5002/api/expenses');
     setExpenses(res.data);
@@ -75,22 +78,25 @@ function ExpenseManagement() {
     }
   };
 
+  // Pagination Logic
+  const indexOfLastExpense = currentPage * rowsPerPage;
+  const indexOfFirstExpense = indexOfLastExpense - rowsPerPage;
+  const currentExpenses = expenses.slice(indexOfFirstExpense, indexOfLastExpense);
+
+  const totalPages = Math.ceil(expenses.length / rowsPerPage);
+
   return (
     <div className="expense-management">
       <h2>Expense Management</h2>
       <form className="expense-form" onSubmit={handleSubmit}>
-      <select
-        value={userId} // Ensure the value is dynamically tied to userId
-        onChange={(e) => setUserId(e.target.value)}
-        required
-      >
-      <option value="">Select User</option>
-        {users.map((u) => (
-          <option key={u._id} value={u._id}>
-            {u.userCode} - {u.firstName} {u.lastName}
-          </option>
-        ))}
-      </select>
+        <select value={userId} onChange={(e) => setUserId(e.target.value)} required>
+          <option value="">Select User</option>
+          {users.map((u) => (
+            <option key={u._id} value={u._id}>
+              {u.userCode} - {u.firstName} {u.lastName}
+            </option>
+          ))}
+        </select>
         <select value={category} onChange={(e) => setCategory(e.target.value)} required>
           <option value="">Select Category</option>
           {categories.map((c) => (
@@ -143,7 +149,7 @@ function ExpenseManagement() {
           </tr>
         </thead>
         <tbody>
-          {expenses.map((exp) => (
+          {currentExpenses.map((exp) => (
             <tr key={exp._id}>
               <td>{exp.userName}</td>
               <td>{exp.category}</td>
@@ -161,6 +167,29 @@ function ExpenseManagement() {
           ))}
         </tbody>
       </table>
+
+      {/* Pagination Controls */}
+      <div className="pagination-controls">
+        <button
+          onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
+          disabled={currentPage === 1}
+        >
+          Previous
+        </button>
+        <span>
+          Page {currentPage} of {totalPages}
+        </span>
+        <button
+          onClick={() =>
+            setCurrentPage((prev) =>
+              prev < totalPages ? prev + 1 : totalPages
+            )
+          }
+          disabled={currentPage === totalPages}
+        >
+          Next
+        </button>
+      </div>
     </div>
   );
 }
