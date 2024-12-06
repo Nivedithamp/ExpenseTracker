@@ -145,6 +145,8 @@ Others
 
 ---
 
+![alt text](images/Expense_Management_Screenshot.png)
+
 📩 Contact
 For any questions or issues, please contact at [nivedithamp23@gmail.com].
 
