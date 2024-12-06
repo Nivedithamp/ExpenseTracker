@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import './ExpenseManagement.css';
+import { toast } from 'react-toastify';
 
 const categories = ['Meals', 'Travel', 'Software'];
 
@@ -38,7 +39,10 @@ function ExpenseManagement() {
   // Handle form submission to add or update an expense
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!userId || !category || !description || cost === '') return;
+    if (!userId || !category || !description || cost === '') {
+      toast.error('Please fill all fields');
+      return;
+    }
 
     if (editExpenseId) {
       // Update an existing expense
@@ -48,6 +52,7 @@ function ExpenseManagement() {
         description,
         cost: Number(cost),
       });
+      toast.success('Expense updated successfully!');
     } else {
       // Add a new expense
       await axios.post('http://localhost:5002/api/expenses', {
@@ -56,6 +61,7 @@ function ExpenseManagement() {
         description,
         cost: Number(cost),
       });
+      toast.success('Expense added successfully!');
     }
 
     // Reset form fields and refresh data

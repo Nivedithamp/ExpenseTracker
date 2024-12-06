@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import './UserManagement.css';
+import { toast } from 'react-toastify';
 
 function UserManagement() {
   const [users, setUsers] = useState([]);
@@ -38,14 +39,14 @@ function UserManagement() {
           firstName,
           lastName,
         });
-        alert('User updated successfully!');
+        toast.success('User updated successfully!');
       } else {
         // Add a new user
         await axios.post('http://localhost:5002/api/users', {
           firstName,
           lastName,
         });
-        alert('User added successfully!');
+        toast.success('User addedd successfully!');
       }
 
       // Reset form fields and refresh users
@@ -55,7 +56,7 @@ function UserManagement() {
       fetchUsers();
     } catch (error) {
       console.error('Error saving user:', error);
-      alert('An error occurred while saving the user.');
+      toast.error('An error occurred while saving the user.');
     }
   };
 

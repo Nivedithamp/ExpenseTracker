@@ -2,11 +2,14 @@ import { Routes, Route, Link } from 'react-router-dom';
 import UserManagement from './pages/UserManagement.jsx';
 import ExpenseManagement from './pages/ExpenseManagement.jsx';
 import TotalCostByCategory from './pages/TotalCostByCategory.jsx';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import './App.css';
 
 function App() {
   return (
     <div className="app-container">
+      <ToastContainer position="top-right" autoClose={3000} />
       <aside>
         <div className="logo">
           <span className="logo-expense">Expense</span>
