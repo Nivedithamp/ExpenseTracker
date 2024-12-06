@@ -1,0 +1,105 @@
+/* General Layout */
+.expense-management {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 1rem;
+    background-color: #393E46; /* Dark Gray Background */
+    color: #EEEEEE; /* Light Text */
+    box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+  }
+  
+  /* Heading */
+  .expense-management h2 {
+    text-align: center;
+    color: #00ADB5; /* Bright Accent */
+    margin-bottom: 1.5rem;
+  }
+  
+  /* Form Styling */
+  .expense-form {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 1rem;
+    margin-bottom: 2rem;
+  }
+  
+  .expense-form select,
+  .expense-form input {
+    padding: 0.5rem;
+    font-size: 1rem;
+    border: 1px solid #222831;
+    border-radius: 4px;
+    background-color: #EEEEEE; /* Light Background */
+    color: #222831; /* Dark Text */
+  }
+  
+  /* Buttons */
+  button.submit-btn {
+    background-color: #00ADB5;
+    color: #222831;
+  }
+  
+  button.submit-btn:hover {
+    background-color: #0099A4;
+  }
+  
+  button.cancel-btn {
+    background-color: #E74C3C; /* Red for Cancel */
+    color: #EEEEEE;
+  }
+  
+  button.cancel-btn:hover {
+    background-color: #C0392B;
+  }
+  
+  button.edit-btn {
+    background-color: #00ADB5;
+    color: #222831;
+    margin-right: 5px;
+  }
+  
+  button.edit-btn:hover {
+    background-color: #0099A4;
+    
+  }
+  
+  button.delete-btn {
+    background-color: #E74C3C; /* Red for Delete */
+    color: #EEEEEE;
+  }
+  
+  button.delete-btn:hover {
+    background-color: #C0392B;
+  }
+  
+  /* Table Styling */
+  .expense-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1.5rem;
+    background-color: #222831; /* Dark Background */
+    color: #EEEEEE; /* Light Text */
+    border-radius: 5px;
+    overflow: hidden;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  }
+  
+  .expense-table th,
+  .expense-table td {
+    padding: 0.75rem 1rem;
+    text-align: left;
+    border-bottom: 1px solid #393E46; /* Gray Border */
+  }
+  
+  .expense-table th {
+    background-color: #00ADB5; /* Bright Accent */
+    color: #222831; /* Dark Text */
+    font-weight: bold;
+  }
+  
+  .expense-table tr:hover {
+    background-color: #EEEEEE; /* Light Background */
+    color: #222831; /* Dark Text */
+  }
+  

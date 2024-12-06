@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import axios from 'axios'
+import './UserManagement.css';
 
 function UserManagement() {
   const [users, setUsers] = useState([])
@@ -8,6 +9,7 @@ function UserManagement() {
   const [lastName, setLastName] = useState('')
 
   const fetchUsers = async () => {
+    // Fetch all users from the backend
     const res = await axios.get('http://localhost:5002/api/users')
     setUsers(res.data)
   }
@@ -20,12 +22,14 @@ function UserManagement() {
     e.preventDefault()
     if (!firstName || !lastName) return
 
+    // If editing a user, update them; otherwise, create a new user
     if (editUserId) {
       await axios.put(`http://localhost:5002/api/users/${editUserId}`, { firstName, lastName })
     } else {
       await axios.post('http://localhost:5002/api/users', { firstName, lastName })
     }
 
+    // Reset form and refetch users
     setFirstName('')
     setLastName('')
     setEditUserId(null)
@@ -33,6 +37,7 @@ function UserManagement() {
   }
 
   const handleEdit = (user) => {
+    // Populate form with user details for editing
     setFirstName(user.firstName)
     setLastName(user.lastName)
     setEditUserId(user._id)
@@ -46,9 +51,9 @@ function UserManagement() {
   }
 
   return (
-    <div>
+    <div className="user-management">
       <h2>User Management</h2>
-      <form onSubmit={handleSubmit} style={{ marginBottom: '1rem' }}>
+      <form className="user-form" onSubmit={handleSubmit}>
         <input
           placeholder="First Name"
           value={firstName}
@@ -76,9 +81,10 @@ function UserManagement() {
         )}
       </form>
 
-      <table border="1" cellPadding="5" cellSpacing="0">
+      <table className="user-table">
         <thead>
           <tr>
+            <th>User Code</th>
             <th>First Name</th>
             <th>Last Name</th>
             <th>Total Cost</th>
@@ -86,17 +92,18 @@ function UserManagement() {
           </tr>
         </thead>
         <tbody>
-          {users.map(u => (
-            <tr key={u._id}>
-              <td>{u.firstName}</td>
-              <td>{u.lastName}</td>
-              <td>{u.totalCost}</td>
-              <td>
-                <button onClick={() => handleEdit(u)}>Edit</button>
-                <button onClick={() => handleDelete(u._id)}>Delete</button>
-              </td>
-            </tr>
-          ))}
+        {users.map(u => (
+        <tr key={u._id}>
+            <td>{u.userCode}</td>
+            <td>{u.firstName}</td>
+            <td>{u.lastName}</td>
+            <td>{u.totalCost}</td>
+            <td>
+            <button className="edit" onClick={() => handleEdit(u)}>Edit</button>
+            <button className="delete" onClick={() => handleDelete(u._id)}>Delete</button>
+         </td>
+        </tr>
+        ))}
         </tbody>
       </table>
     </div>

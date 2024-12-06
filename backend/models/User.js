@@ -6,4 +6,5 @@ const UserSchema = new mongoose.Schema({
   lastName: { type: String, required: true }
 }, { timestamps: true });
 
-module.exports = mongoose.model('User', UserSchema);
+// Use mongoose.models to check if the model already exists
+module.exports = mongoose.models.User || mongoose.model('User', UserSchema);

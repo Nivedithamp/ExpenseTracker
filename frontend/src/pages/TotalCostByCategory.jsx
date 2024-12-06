@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import axios from 'axios'
+import './TotalCostByCategory.css';
 
 function TotalCostByCategory() {
   const [totals, setTotals] = useState([])
@@ -14,9 +15,9 @@ function TotalCostByCategory() {
   }, [])
 
   return (
-    <div>
+    <div className="total-cost-category">
       <h2>Total Cost by Category</h2>
-      <table border="1" cellPadding="5" cellSpacing="0">
+      <table className="total-cost-table">
         <thead>
           <tr>
             <th>Category</th>

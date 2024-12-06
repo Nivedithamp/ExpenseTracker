@@ -1,14 +1,159 @@
+/* General Reset */
 body {
-    margin: 0;
-    font-family: Arial, sans-serif;
-  }
-  
-  a {
-    text-decoration: none;
-    color: inherit;
-  }
-  
-  a:hover {
-    text-decoration: underline;
-  }
-  
+  margin: 0;
+  font-family: 'Arial', sans-serif;
+  background-color: #222831; /* Dark Background */
+  color: #EEEEEE; /* Light Text */
+}
+
+/* App Layout */
+.app-container {
+  display: flex;
+  height: 100vh;
+}
+
+/* Sidebar */
+aside {
+  width: 250px;
+  background-color: #393E46; /* Dark Gray Sidebar */
+  color: #EEEEEE; /* Light Text */
+  display: flex;
+  flex-direction: column;
+  padding: 1.5rem;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Logo Styling */
+.logo {
+  font-size: 2rem; /* Increased size */
+  font-weight: bold;
+  margin-bottom: 2.5rem;
+  display: flex;
+  align-items: center;
+  gap: 8px; /* Larger gap for better spacing */
+}
+
+.logo-expense {
+  color: #EEEEEE; /* Bright Accent for "Expense" */
+  font-family: 'Arial', sans-serif;
+}
+
+.logo-trackr {
+  color: #00ADB5; /* Light Text for "Trackr" */
+  font-family: 'Courier New', monospace;
+}
+
+/* Navigation */
+aside nav ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+aside nav ul li {
+  margin-bottom: 1.5rem; /* Increased margin for spacing */
+}
+
+aside nav ul li a {
+  color: #EEEEEE; /* Light Text */
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 1.2rem; /* Increased size */
+  padding: 0.75rem 1.5rem; /* Larger padding for better clickability */
+  display: block;
+  border-radius: 4px;
+  font-family: 'Verdana', sans-serif; /* Changed font */
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+aside nav ul li a:hover {
+  background-color: #00ADB5; /* Bright Accent on Hover */
+  transform: translateX(8px); /* More dramatic horizontal effect */
+}
+
+/* Main Content */
+main {
+  flex: 1;
+  padding: 2rem;
+  overflow-y: auto;
+  background-color: #EEEEEE; /* Light Background */
+  color: #222831; /* Dark Text */
+}
+
+/* Table Styling */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1.5rem;
+  background-color: #393E46; /* Dark Gray */
+  color: #EEEEEE; /* Light Text */
+  border-radius: 5px;
+  overflow: hidden;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+table th,
+table td {
+  padding: 0.75rem 1rem;
+  text-align: left;
+  border-bottom: 1px solid #222831; /* Dark Border */
+}
+
+table th {
+  background-color: #00ADB5; /* Bright Accent */
+  color: #222831; /* Dark Text */
+  font-weight: bold;
+}
+
+table tr:hover {
+  background-color: #EEEEEE; /* Light Background */
+  color: #222831; /* Dark Text */
+}
+
+/* Buttons */
+button {
+  border: none;
+  padding: 0.5rem 1rem;
+  font-size: 0.9rem;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, box-shadow 0.2s ease;
+}
+
+/* Edit Button */
+button.edit {
+  background-color: #00ADB5;
+  color: #222831;
+}
+
+button.edit:hover {
+  background-color: #0099A4;
+}
+
+/* Delete Button */
+button.delete {
+  background-color: #E74C3C; /* Red for Delete */
+  color: #EEEEEE;
+}
+
+button.delete:hover {
+  background-color: #C0392B;
+}
+
+/* Scrollbar Styling */
+main::-webkit-scrollbar {
+  width: 8px;
+}
+
+main::-webkit-scrollbar-track {
+  background: #393E46; /* Sidebar Gray */
+}
+
+main::-webkit-scrollbar-thumb {
+  background: #00ADB5; /* Bright Accent */
+  border-radius: 5px;
+}
+
+main::-webkit-scrollbar-thumb:hover {
+  background: #0099A4;
+}

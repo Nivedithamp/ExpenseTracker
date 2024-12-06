@@ -19,16 +19,23 @@ exports.createExpense = async (req, res) => {
 };
 
 exports.getExpenses = async (req, res) => {
-  try {
-    const expenses = await Expense.find({}).populate('userId', 'firstName lastName').lean();
-    const formatted = expenses.map(e => ({
-      ...e,
-      userName: e.userId ? `${e.userId.firstName} ${e.userId.lastName}` : "Unknown"
-    }));
-    return res.status(200).json(formatted);
-  } catch (err) {
-    return res.status(500).json({ error: err.message });
-  }
+    try {
+      const expenses = await Expense.find({})
+        .populate('userId', 'firstName lastName userCode') // Include userCode here
+        .lean();
+  
+      // Now include userCode in the displayed name
+      const formatted = expenses.map(e => ({
+        ...e,
+        userName: e.userId 
+          ? `${e.userId.userCode} - ${e.userId.firstName} ${e.userId.lastName}` 
+          : "Unknown"
+      }));
+  
+      return res.status(200).json(formatted);
+    } catch (err) {
+      return res.status(500).json({ error: err.message });
+    }
 };
 
 exports.updateExpense = async (req, res) => {
