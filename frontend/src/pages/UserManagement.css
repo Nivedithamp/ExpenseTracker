@@ -144,3 +144,33 @@ button.delete:hover {
     font-size: 1rem;
     color: #EEEEEE;
 }
+
+
+.search-input-container {
+    position: relative;
+    display: flex;
+    justify-content: left;
+    margin-bottom: 1.5rem;
+}
+  
+.search-icon {
+    position: absolute;
+    left: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #666;
+    pointer-events: none;
+}
+  
+.search-input {
+    width: 300px;
+    max-width: 100%;
+    padding: 0.75rem 1rem 0.75rem 2.5rem; 
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    background-color: #f9f9f9;
+}
+  
+  

@@ -2,15 +2,17 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 import './UserManagement.css';
 import { toast } from 'react-toastify';
+import { FaSearch } from 'react-icons/fa';
 
 function UserManagement() {
   const [users, setUsers] = useState([]);
   const [editUserId, setEditUserId] = useState(null);
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
+  const [searchQuery, setSearchQuery] = useState(''); // State to store search query
 
   const [currentPage, setCurrentPage] = useState(1); // Tracks the current page number
-  const rowsPerPage = 10; // Defines the number of rows to display per page
+  const rowsPerPage = 8; // Defines the number of rows to display per page
 
   // Fetch users from the backend and update state
   const fetchUsers = async () => {
@@ -46,7 +48,7 @@ function UserManagement() {
           firstName,
           lastName,
         });
-        toast.success('User addedd successfully!');
+        toast.success('User added successfully!');
       }
 
       // Reset form fields and refresh users
@@ -79,16 +81,36 @@ function UserManagement() {
     }
   };
 
+  // Filter users based on search query
+  const filteredUsers = users.filter((user) =>
+    `${user.firstName} ${user.lastName} ${user.userCode}`
+      .toLowerCase()
+      .includes(searchQuery.toLowerCase())
+  );
+
   // Pagination logic
   const indexOfLastUser = currentPage * rowsPerPage;
   const indexOfFirstUser = indexOfLastUser - rowsPerPage;
-  const currentUsers = users.slice(indexOfFirstUser, indexOfLastUser);
+  const currentUsers = filteredUsers.slice(indexOfFirstUser, indexOfLastUser);
 
-  const totalPages = Math.ceil(users.length / rowsPerPage);
+  const totalPages = Math.ceil(filteredUsers.length / rowsPerPage);
 
   return (
     <div className="user-management">
       <h2>User Management</h2>
+
+      {/* Search bar */}
+      <div className="search-input-container">
+        <FaSearch className="search-icon" />
+        <input
+          type="text"
+          placeholder="Search by User Code, First Name, or Last Name"
+          value={searchQuery}
+          onChange={(e) => setSearchQuery(e.target.value)}
+          className="search-input"
+        />
+      </div>
+
       {/* User form for adding or editing a user */}
       <form className="user-form" onSubmit={handleSubmit}>
         <input

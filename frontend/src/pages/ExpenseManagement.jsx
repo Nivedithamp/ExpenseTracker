@@ -2,6 +2,8 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 import './ExpenseManagement.css';
 import { toast } from 'react-toastify';
+import { FaSearch } from 'react-icons/fa';
+
 
 const categories = ['Meals', 'Travel', 'Software'];
 
@@ -14,9 +16,10 @@ function ExpenseManagement() {
   const [category, setCategory] = useState('');
   const [description, setDescription] = useState('');
   const [cost, setCost] = useState('');
+  const [searchQuery, setSearchQuery] = useState(''); // State for search query
 
   const [currentPage, setCurrentPage] = useState(1); // Tracks the current page for pagination
-  const rowsPerPage = 10; // Number of rows displayed per page
+  const rowsPerPage = 8; // Number of rows displayed per page
 
   // Fetch expenses from the backend
   const fetchExpenses = async () => {
@@ -92,16 +95,36 @@ function ExpenseManagement() {
     }
   };
 
+  // Filter expenses based on the search query
+  const filteredExpenses = expenses.filter(expense =>
+    expense.userName.toLowerCase().includes(searchQuery.toLowerCase()) ||
+    expense.category.toLowerCase().includes(searchQuery.toLowerCase()) ||
+    expense.description.toLowerCase().includes(searchQuery.toLowerCase())
+  );
+
   // Calculate the expenses to display for the current page
   const indexOfLastExpense = currentPage * rowsPerPage;
   const indexOfFirstExpense = indexOfLastExpense - rowsPerPage;
-  const currentExpenses = expenses.slice(indexOfFirstExpense, indexOfLastExpense);
+  const currentExpenses = filteredExpenses.slice(indexOfFirstExpense, indexOfLastExpense);
 
-  const totalPages = Math.ceil(expenses.length / rowsPerPage); // Total number of pages
+  const totalPages = Math.ceil(filteredExpenses.length / rowsPerPage); // Total number of pages
 
   return (
     <div className="expense-management">
       <h2>Expense Management</h2>
+      
+      {/* For Search Bar */}
+      <div className="search-input-container">
+        <FaSearch className="search-icon" />
+        <input
+          type="text"
+          placeholder="Search user,category,description..."
+          value={searchQuery}
+          onChange={(e) => setSearchQuery(e.target.value)}
+          className="search-input"
+        />
+      </div>
+
       <form className="expense-form" onSubmit={handleSubmit}>
         <select value={userId} onChange={(e) => setUserId(e.target.value)} required>
           <option value="">Select User</option>
