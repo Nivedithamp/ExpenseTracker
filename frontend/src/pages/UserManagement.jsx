@@ -8,60 +8,77 @@ function UserManagement() {
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
 
-  // Pagination State
-  const [currentPage, setCurrentPage] = useState(1); // Current page number
-  const rowsPerPage = 10; // Number of rows per page
+  const [currentPage, setCurrentPage] = useState(1); // Tracks the current page number
+  const rowsPerPage = 10; // Defines the number of rows to display per page
 
-  // Fetch users from the backend
+  // Fetch users from the backend and update state
   const fetchUsers = async () => {
-    const res = await axios.get('http://localhost:5002/api/users');
-    setUsers(res.data);
+    try {
+      const res = await axios.get('http://localhost:5002/api/users');
+      setUsers(res.data);
+    } catch (error) {
+      console.error('Error fetching users:', error);
+    }
   };
 
+  // Fetch users when the component mounts
   useEffect(() => {
     fetchUsers();
   }, []);
 
-  // Handle form submission for adding or editing a user
+  // Handle form submission for adding or updating a user
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!firstName || !lastName) return;
+    if (!firstName || !lastName) return; // Ensure both fields are filled
 
-    if (editUserId) {
-      await axios.put(`http://localhost:5002/api/users/${editUserId}`, {
-        firstName,
-        lastName,
-      });
-    } else {
-      await axios.post('http://localhost:5002/api/users', {
-        firstName,
-        lastName,
-      });
+    try {
+      if (editUserId) {
+        // Update existing user
+        await axios.put(`http://localhost:5002/api/users/${editUserId}`, {
+          firstName,
+          lastName,
+        });
+        alert('User updated successfully!');
+      } else {
+        // Add a new user
+        await axios.post('http://localhost:5002/api/users', {
+          firstName,
+          lastName,
+        });
+        alert('User added successfully!');
+      }
+
+      // Reset form fields and refresh users
+      setFirstName('');
+      setLastName('');
+      setEditUserId(null);
+      fetchUsers();
+    } catch (error) {
+      console.error('Error saving user:', error);
+      alert('An error occurred while saving the user.');
     }
-
-    // Reset form and refetch users
-    setFirstName('');
-    setLastName('');
-    setEditUserId(null);
-    fetchUsers();
   };
 
-  // Populate form with user details for editing
+  // Populate form fields for editing a user
   const handleEdit = (user) => {
     setFirstName(user.firstName);
     setLastName(user.lastName);
     setEditUserId(user._id);
   };
 
-  // Handle deleting a user
+  // Delete a user and refresh the list
   const handleDelete = async (id) => {
     if (window.confirm('Are you sure you want to delete this user?')) {
-      await axios.delete(`http://localhost:5002/api/users/${id}`);
-      fetchUsers();
+      try {
+        await axios.delete(`http://localhost:5002/api/users/${id}`);
+        fetchUsers();
+      } catch (error) {
+        console.error('Error deleting user:', error);
+      }
     }
   };
 
-  // Pagination Logic
+  // Pagination logic
   const indexOfLastUser = currentPage * rowsPerPage;
   const indexOfFirstUser = indexOfLastUser - rowsPerPage;
   const currentUsers = users.slice(indexOfFirstUser, indexOfLastUser);
@@ -71,6 +88,7 @@ function UserManagement() {
   return (
     <div className="user-management">
       <h2>User Management</h2>
+      {/* User form for adding or editing a user */}
       <form className="user-form" onSubmit={handleSubmit}>
         <input
           placeholder="First Name"
@@ -101,6 +119,7 @@ function UserManagement() {
         )}
       </form>
 
+      {/* User table displaying current users */}
       <table className="user-table">
         <thead>
           <tr>
@@ -131,7 +150,7 @@ function UserManagement() {
         </tbody>
       </table>
 
-      {/* Pagination Controls */}
+      {/* Pagination controls */}
       <div className="pagination-controls">
         <button
           onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}

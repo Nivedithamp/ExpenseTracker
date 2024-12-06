@@ -1,22 +1,32 @@
-import { useEffect, useState } from 'react'
-import axios from 'axios'
+import { useEffect, useState } from 'react';
+import axios from 'axios';
 import './TotalCostByCategory.css';
 
 function TotalCostByCategory() {
-  const [totals, setTotals] = useState([])
+  // State to store total costs by category
+  const [totals, setTotals] = useState([]);
 
+  // Fetch totals for each category from the backend
   const fetchTotals = async () => {
-    const res = await axios.get('http://localhost:5002/api/expenses/totals')
-    setTotals(res.data)
-  }
+    try {
+      const res = await axios.get('http://localhost:5002/api/expenses/totals');
+      setTotals(res.data); // Update state with fetched totals
+    } catch (error) {
+      console.error('Error fetching total costs:', error);
+    }
+  };
 
+  // Fetch totals when the component mounts
   useEffect(() => {
-    fetchTotals()
-  }, [])
+    fetchTotals();
+  }, []);
 
   return (
     <div className="total-cost-category">
+      {/* Page Heading */}
       <h2>Total Cost by Category</h2>
+
+      {/* Table to display total costs by category */}
       <table className="total-cost-table">
         <thead>
           <tr>
@@ -25,16 +35,16 @@ function TotalCostByCategory() {
           </tr>
         </thead>
         <tbody>
-          {totals.map(t => (
+          {totals.map((t) => (
             <tr key={t._id}>
-              <td>{t._id}</td>
-              <td>{t.totalCost}</td>
+              <td>{t._id}</td> {/* Category Name */}
+              <td>{t.totalCost}</td> {/* Total Cost */}
             </tr>
           ))}
         </tbody>
       </table>
     </div>
-  )
+  );
 }
 
-export default TotalCostByCategory
+export default TotalCostByCategory;

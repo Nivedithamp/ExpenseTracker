@@ -1,134 +1,127 @@
-/* General Layout */
 .expense-management {
     max-width: 1100px;
     margin: 0 auto;
     padding: 1rem;
-    background-color: #393E46; /* Dark Gray Background */
-    color: #EEEEEE; /* Light Text */
+    background-color: #393E46;
+    color: #EEEEEE;
     box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1);
     border-radius: 8px;
-  }
-  
-  /* Heading */
-  .expense-management h2 {
+}
+
+.expense-management h2 {
     text-align: center;
-    color: #00ADB5; /* Bright Accent */
+    color: #00ADB5;
     margin-bottom: 1.5rem;
-  }
-  
-  /* Form Styling */
-  .expense-form {
+}
+
+.expense-form {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
     gap: 1rem;
     margin-bottom: 2rem;
-  }
-  
-  .expense-form select,
-  .expense-form input {
+}
+
+.expense-form select,
+.expense-form input {
     padding: 0.5rem;
     font-size: 1rem;
     border: 1px solid #222831;
     border-radius: 4px;
-    background-color: #EEEEEE; /* Light Background */
-    color: #222831; /* Dark Text */
-  }
-  
-  /* Buttons */
-  button.submit-btn {
+    background-color: #EEEEEE;
+    color: #222831;
+}
+
+button.submit-btn {
     background-color: #00ADB5;
     color: #222831;
-  }
-  
-  button.submit-btn:hover {
+}
+
+button.submit-btn:hover {
     background-color: #0099A4;
-  }
-  
-  button.cancel-btn {
-    background-color: #E74C3C; /* Red for Cancel */
+}
+
+button.cancel-btn {
+    background-color: #E74C3C;
     color: #EEEEEE;
-  }
-  
-  button.cancel-btn:hover {
+}
+
+button.cancel-btn:hover {
     background-color: #C0392B;
-  }
-  
-  button.edit-btn {
+}
+
+button.edit-btn {
     background-color: #00ADB5;
     color: #222831;
     margin-right: 5px;
-  }
-  
-  button.edit-btn:hover {
+}
+
+button.edit-btn:hover {
     background-color: #0099A4;
-    
-  }
-  
-  button.delete-btn {
-    background-color: #E74C3C; /* Red for Delete */
+}
+
+button.delete-btn {
+    background-color: #E74C3C;
     color: #EEEEEE;
-  }
-  
-  button.delete-btn:hover {
+}
+
+button.delete-btn:hover {
     background-color: #C0392B;
-  }
-  
-  /* Table Styling */
-  .expense-table {
+}
+
+.expense-table {
     width: 100%;
     border-collapse: collapse;
     margin-top: 1.5rem;
-    background-color: #222831; /* Dark Background */
-    color: #EEEEEE; /* Light Text */
+    background-color: #222831;
+    color: #EEEEEE;
     border-radius: 5px;
     overflow: hidden;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-  }
-  
-  .expense-table th,
-  .expense-table td {
+}
+
+.expense-table th,
+.expense-table td {
     padding: 0.75rem 1rem;
     text-align: left;
-    border-bottom: 1px solid #393E46; /* Gray Border */
-  }
-  
-  .expense-table th {
-    background-color: #00ADB5; /* Bright Accent */
-    color: #222831; /* Dark Text */
+    border-bottom: 1px solid #393E46;
+}
+
+.expense-table th {
+    background-color: #00ADB5;
+    color: #222831;
     font-weight: bold;
-  }
-  
-  .expense-table tr:hover {
-    background-color: #EEEEEE; /* Light Background */
-    color: #222831; /* Dark Text */
-  }
-  
-  .pagination-controls {
+}
+
+.expense-table tr:hover {
+    background-color: #EEEEEE;
+    color: #222831;
+}
+
+.pagination-controls {
     display: flex;
     justify-content: center;
     align-items: center;
     gap: 1rem;
     margin-top: 1rem;
-  }
-  
-  .pagination-controls button {
+}
+
+.pagination-controls button {
     padding: 0.5rem 1rem;
     font-size: 1rem;
     border: none;
     border-radius: 4px;
     cursor: pointer;
-    background-color: #00ADB5; /* Bright Accent */
-    color: #393E46; /* Dark Text */
+    background-color: #00ADB5;
+    color: #393E46;
     transition: background-color 0.3s ease;
-  }
-  
-  .pagination-controls button:disabled {
-    background-color: #393E46; /* Gray for disabled */
+}
+
+.pagination-controls button:disabled {
+    background-color: #393E46;
     cursor: not-allowed;
-  }
-  
-  .pagination-controls span {
+}
+
+.pagination-controls span {
     font-size: 1rem;
     color: #EEEEEE;
-  }
-  
+}

@@ -2,7 +2,7 @@ import { Routes, Route, Link } from 'react-router-dom';
 import UserManagement from './pages/UserManagement.jsx';
 import ExpenseManagement from './pages/ExpenseManagement.jsx';
 import TotalCostByCategory from './pages/TotalCostByCategory.jsx';
-import './App.css'; // Ensure the CSS file is included
+import './App.css';
 
 function App() {
   return (

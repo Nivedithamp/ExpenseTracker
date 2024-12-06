@@ -14,29 +14,34 @@ function ExpenseManagement() {
   const [description, setDescription] = useState('');
   const [cost, setCost] = useState('');
 
-  const [currentPage, setCurrentPage] = useState(1); // Pagination state
-  const rowsPerPage = 10; // Number of rows per page
+  const [currentPage, setCurrentPage] = useState(1); // Tracks the current page for pagination
+  const rowsPerPage = 10; // Number of rows displayed per page
 
+  // Fetch expenses from the backend
   const fetchExpenses = async () => {
     const res = await axios.get('http://localhost:5002/api/expenses');
     setExpenses(res.data);
   };
 
+  // Fetch users from the backend
   const fetchUsers = async () => {
     const res = await axios.get('http://localhost:5002/api/users');
     setUsers(res.data);
   };
 
+  // Fetch users and expenses when the component mounts
   useEffect(() => {
     fetchUsers();
     fetchExpenses();
   }, []);
 
+  // Handle form submission to add or update an expense
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!userId || !category || !description || cost === '') return;
 
     if (editExpenseId) {
+      // Update an existing expense
       await axios.put(`http://localhost:5002/api/expenses/${editExpenseId}`, {
         userId,
         category,
@@ -44,6 +49,7 @@ function ExpenseManagement() {
         cost: Number(cost),
       });
     } else {
+      // Add a new expense
       await axios.post('http://localhost:5002/api/expenses', {
         userId,
         category,
@@ -52,6 +58,7 @@ function ExpenseManagement() {
       });
     }
 
+    // Reset form fields and refresh data
     setUserId('');
     setCategory('');
     setDescription('');
@@ -61,15 +68,16 @@ function ExpenseManagement() {
     fetchUsers(); // Refresh user totals
   };
 
+  // Populate the form with data when editing an expense
   const handleEdit = (exp) => {
-    console.log('Expense being edited:', exp); // Debug log
-    setUserId(exp.userId); // Set userId for the dropdown
+    setUserId(exp.userId);
     setCategory(exp.category);
     setDescription(exp.description);
     setCost(exp.cost);
     setEditExpenseId(exp._id);
   };
 
+  // Delete an expense and refresh data
   const handleDelete = async (id) => {
     if (window.confirm('Delete this expense?')) {
       await axios.delete(`http://localhost:5002/api/expenses/${id}`);
@@ -78,12 +86,12 @@ function ExpenseManagement() {
     }
   };
 
-  // Pagination Logic
+  // Calculate the expenses to display for the current page
   const indexOfLastExpense = currentPage * rowsPerPage;
   const indexOfFirstExpense = indexOfLastExpense - rowsPerPage;
   const currentExpenses = expenses.slice(indexOfFirstExpense, indexOfLastExpense);
 
-  const totalPages = Math.ceil(expenses.length / rowsPerPage);
+  const totalPages = Math.ceil(expenses.length / rowsPerPage); // Total number of pages
 
   return (
     <div className="expense-management">
@@ -168,7 +176,6 @@ function ExpenseManagement() {
         </tbody>
       </table>
 
-      {/* Pagination Controls */}
       <div className="pagination-controls">
         <button
           onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}

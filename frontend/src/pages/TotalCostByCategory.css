@@ -1,61 +1,45 @@
-/* General Layout */
 .total-cost-category {
     max-width: 1100px;
     margin: 0 auto;
     padding: 1rem;
-    background-color: #393E46; /* Dark Gray Background */
-    color: #EEEEEE; /* Light Text */
+    background-color: #393E46;
+    color: #EEEEEE;
     box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1);
     border-radius: 8px;
-  }
-  
-  /* Heading */
-  .total-cost-category h2 {
+}
+
+.total-cost-category h2 {
     text-align: center;
-    color: #00ADB5; /* Bright Accent */
+    color: #00ADB5;
     margin-bottom: 1.5rem;
-  }
-  
-  /* Table Styling */
-  .total-cost-table {
+}
+
+.total-cost-table {
     width: 100%;
     border-collapse: collapse;
     margin-top: 1rem;
-    background-color: #222831; /* Dark Background */
-    color: #EEEEEE; /* Light Text */
+    background-color: #222831;
+    color: #EEEEEE;
     border-radius: 5px;
     overflow: hidden;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-  }
-  
-  .total-cost-table th,
-  .total-cost-table td {
+}
+
+.total-cost-table th,
+.total-cost-table td {
     padding: 0.75rem 1rem;
     text-align: left;
-    border-bottom: 1px solid #393E46; /* Gray Border */
-  }
-  
-  .total-cost-table th {
-    background-color: #00ADB5; /* Bright Accent */
-    color: #222831; /* Dark Text */
+    border-bottom: 1px solid #393E46;
+}
+
+.total-cost-table th {
+    background-color: #00ADB5;
+    color: #222831;
     font-weight: bold;
-  }
-  
-  .total-cost-table tr:hover {
-    background-color: #EEEEEE; /* Light Background */
-    color: #222831; /* Dark Text */
-  }
-  
-  /* Responsive Design */
-  @media (max-width: 768px) {
-    .total-cost-category {
-      padding: 1rem;
-    }
-  
-    .total-cost-table th,
-    .total-cost-table td {
-      font-size: 0.9rem;
-      padding: 0.5rem;
-    }
-  }
-  
+}
+
+.total-cost-table tr:hover {
+    background-color: #EEEEEE;
+    color: #222831;
+}
+
