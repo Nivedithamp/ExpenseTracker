@@ -118,21 +118,6 @@ Frontend Setup
 - Basic spinners are used during data fetches. This can be enhanced with skeleton loaders for better UX.
 
 ---
-🎨 Visuals
-
-User Management
-![alt text](images/User_Management_Screenshot.png)
-
-Expense Management
-![alt text](images/Expense_Management_Screenshot.png)
-
-Total Costs By Category
-![alt text](images/Total_Cost_By_Category_Screenshot.png)
-
-Search and Filter in Action
-![alt text](images/Search_functionality_screenshot.png)
-
----
 
 ⚙️ Technologies Used
 
